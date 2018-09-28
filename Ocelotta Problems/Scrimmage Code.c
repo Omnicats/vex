@@ -68,10 +68,24 @@ task autonomous()
 
   motor[shootLeftMotor] = 127;
   motor[shootRightMotor] = 127;
-  delay(5000);
+  delay(2500);
   motor[shootLeftMotor] = 0;
   motor[shootRightMotor] = 0;
+  //turn direction 90
+  //go to cap, flip and intake
+  //turn 180
+  //get back to starting spot
+  //turn back to original rotation
+  //fire
+  //forward for low flag
 }
+
+void turnToDegrees(float degrees){
+	degrees *= 10;
+	float initialGyro = (SensorValue[gyro] >= 0) ? SensorValue[gyro] : SensorValue[gyro] + 3600
+	if(//min of initialGyro and degrees +180 < max of those, turn clockwise, else counterclockwise)
+
+	while(((SensorValue[gyro] >= 0) ? SensorValue[gyro] : SensorValue[gyro] + 3600) < 10*(degrees - 180)
 
 
 task usercontrol()
@@ -96,11 +110,8 @@ task usercontrol()
 		theta = SensorValue[gyro]
 		frontSpeed = vexRT[Ch3];
 		rightSpeed = vexRT[Ch4];
-
 		frontSpeed = frontSpeed*cos(theta) - rightSpeed*sin(theta);
 		rightSpeed = rightSpeed*cos(theta) + frontSpeed*sin(theta);
-
-
 		axes[0] = frontSpeed;
 		axes[1] = rightSpeed;
 		axes[2] = vexRT[Ch1];
