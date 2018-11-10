@@ -1,0 +1,21 @@
+for vision: aim at flags is the big one
+aim at balls and caps would be nice too
+maybe in auto we could aim straight at a platform, in teleop too just for fun
+
+for the button control loop:
+pre-auton brings up the buttons
+ordering is like reading with colors as pages, ordered by expected frequency of use
+
+main question atm is how to manage whether we're in competition or not, and the two choices are manual or automatic
+upside of automatic is that we can't forget, downside is that we have to wait to plug in the controller
+upside of manual is that we can prep before plugging in, but i don't think we actually ever did that so auto it is
+
+if we're doing automatic determination, competition logic is pretty easy, if in competition we wait for a button press to set up the event listeners
+if not in competition, we want to have user control but be able to trigger autonomous runs whenever we want, so have each button trigger a 3 second or so wait and then run that autonomous
+
+gui for auto selection:
+set up the buttons and have them remain in place, only register presses that don't occur while an auto is running
+have them run as a task and include a cancel button both on the remote and on the gui
+
+make a button class that draws itself and checks for being pressed with an update function, and stores an onPress function
+said onPress function either sets the autonomous callback to its stored function OR runs a new task with that function
